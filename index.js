@@ -13,21 +13,22 @@ var successAudio = new Audio('assets/audios/success.mp3');
 let curr = 0, total = 20, noCount = 0, loopTimer;
 
 function preloadAssets() {
-    errorAudio.play();
-    errorAudio.pause();
-    errorAudio.currentTime = 0;
-    successAudio.play();
-    successAudio.pause();
-    successAudio.currentTime = 0;
-    var image = document.createElement("img");
     for(var i = 0; i <= 5 ; i++) {
+        var image = document.createElement("img");
         image.setAttribute('src', `assets/hints/${i}.webp`);
+        document.getElementsByClassName('preloading')[0].appendChild(image);
     }
     for(var i = 1; i <= 14 ; i++) {
+        var image = document.createElement("img");
         image.setAttribute('src', `assets/stickers/${i}.webp`);
+        document.getElementsByClassName('preloading')[0].appendChild(image);
     }
-    image.setAttribute('src', 'assets/stickers/start.webp');
-    image.setAttribute('src', 'assets/stickers/end.webp');
+    var start = document.createElement("img");
+    start.setAttribute('src', 'assets/stickers/start.webp');
+    var end = document.createElement("img");
+    end.setAttribute('src', 'assets/stickers/end.webp');
+    document.getElementsByClassName('preloading')[0].appendChild(start);
+    document.getElementsByClassName('preloading')[0].appendChild(end);
 }
 
 preloadAssets();
@@ -143,53 +144,63 @@ stopBtn.addEventListener('click', () => {
     stopBtn.classList.toggle('invisible')
 })
 
-// let count = 0;
+let count = 0;
+var popupSticker = document.getElementsByClassName('popupSticker')[0];
+var popupHeading = document.getElementsByClassName('popupHeading')[0]
+var passwordElement = document.getElementsByClassName('passwordInput')[0];
+
+function checkPassword() {
+    let password = passwordElement.value;
+    if(password.toLowerCase() === "shimuektamyao") {
+        count = 5;
+        successAudio.play();
+        passwordElement.style = "display: none"
+        document.getElementsByClassName('openBtn')[0].style = "display: none";
+    }
+    else {
+        if(count !== 4)
+            count++;
+        errorAudio.play();
+        passwordElement.classList.add("error");
+        setTimeout(() => {
+            passwordElement.classList.remove("error")
+        }, 1500);
+    }
+    popupHeading.textContent = hints[count];
+    popupSticker.setAttribute('src', `assets/hints/${count}.webp`);
+    if(count === 5) {
+        setTimeout(() => {
+            location.href = "#";
+            setTimeout(() => {
+                envelopeTop.classList.add('topOpen');
+                document.getElementsByClassName('open')[0].style = "display: none"
+                setTimeout(() => letter.classList.add('out'), 1000);
+            }, 500);
+        }, 1000)
+    }
+}
 
 document.getElementsByClassName('open')[0].addEventListener('click', () => {
-    let count = 0;
+    count = 0;
     console.log('reset')
-    var popupSticker = document.getElementsByClassName('popupSticker')[0];
-    var popupHeading = document.getElementsByClassName('popupHeading')[0]
+    
     popupSticker.setAttribute('src', `assets/hints/${count}.webp`);
     popupHeading.textContent = hints[count];
     console.log('click')
     location.href = '#popup';
-    let passwordElement = document.getElementsByClassName('passwordInput')[0];
 
-    function checkPassword() {
-        let password = passwordElement.value;
-        if(password.toLowerCase() === "shimuektamyao") {
-            count = 5;
-            successAudio.play();
-            passwordElement.style = "display: none"
-            document.getElementsByClassName('openBtn')[0].style = "display: none";
-        }
-        else {
-            if(count !== 4)
-                count++;
-            errorAudio.play();
-            passwordElement.classList.add("error");
-            setTimeout(() => {
-                passwordElement.classList.remove("error")
-            }, 1500);
-        }
-        popupHeading.textContent = hints[count];
-        popupSticker.setAttribute('src', `assets/hints/${count}.webp`);
-        if(count === 5) {
-            setTimeout(() => {
-                location.href = "#";
-                setTimeout(() => {
-                    envelopeTop.classList.add('topOpen');
-                    document.getElementsByClassName('open')[0].style = "display: none"
-                    setTimeout(() => letter.classList.add('out'), 1000);
-                }, 500);
-            }, 1000)
-        }
-    }
-
-    document.getElementsByClassName('openBtn')[0].addEventListener('click', () => checkPassword());
-    passwordElement.addEventListener('keydown', (e) => {
-        if(e.code === "Enter")
-            checkPassword();
-    }) 
+    errorAudio.play();
+    errorAudio.pause();
+    errorAudio.currentTime = 0;
+    successAudio.play();
+    successAudio.pause();
+    successAudio.currentTime = 0;
+    
 })
+
+document.getElementsByClassName('openBtn')[0].addEventListener('click', () => checkPassword());
+
+passwordElement.addEventListener('keydown', (e) => {
+    if(e.code === "Enter")
+        checkPassword();
+}) 
