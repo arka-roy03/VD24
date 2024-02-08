@@ -1,11 +1,6 @@
 var envelopeTop = document.getElementsByClassName('envelope-top')[0];
 var letter = document.getElementsByClassName('letter')[0];
 
-envelopeTop.addEventListener('click', () => {
-    envelopeTop.classList.add('topOpen');
-    setTimeout(() => letter.classList.add('out'), 1000);
-})
-
 var buttons = document.getElementsByClassName('btn');
 var startBtn = buttons[0], prevBtn = buttons[1], nextBtn = buttons[2], noBtn = buttons[3], yesBtn = buttons[4], stopBtn = buttons[5];
 

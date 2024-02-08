@@ -1,16 +1,16 @@
 @font-face {
     font-family: Bigdey;
-    src: url(/assets/fonts/Bigdey.ttf);
+    src: url(assets/fonts/Bigdey.ttf);
 }
 
 @font-face {
     font-family: Lucy;
-    src: url(/assets/fonts/Lucy.ttf);
+    src: url(assets/fonts/Lucy.ttf);
 }
 
 @font-face {
     font-family: LadyLikeBB;
-    src: url(/assets/fonts/LadylikeBB.ttf);
+    src: url(assets/fonts/LadylikeBB.ttf);
 }
 
 body {
