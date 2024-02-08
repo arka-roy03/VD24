@@ -12,9 +12,29 @@ var successAudio = new Audio('assets/audios/success.mp3');
 
 let curr = 0, total = 20, noCount = 0, loopTimer;
 
+function preloadAssets() {
+    errorAudio.play();
+    errorAudio.pause();
+    errorAudio.currentTime = 0;
+    successAudio.play();
+    successAudio.pause();
+    successAudio.currentTime = 0;
+    var image = document.createElement("img");
+    for(var i = 0; i <= 5 ; i++) {
+        image.setAttribute('src', `assets/hints/${i}.webp`);
+    }
+    for(var i = 1; i <= 14 ; i++) {
+        image.setAttribute('src', `assets/stickers/${i}.webp`);
+    }
+    image.setAttribute('src', 'assets/stickers/start.webp');
+    image.setAttribute('src', 'assets/stickers/end.webp');
+}
+
+preloadAssets();
+
 let texts = ["Chinki is getting ready for his date", "With bbddoolllllllllllllllllll", "This is their first time going out on valentines day", "They are so excited eeeeeeeee", "They went to a cafe, and took many cutiepie pictures", "Bbdoll had an iskrimgasm, and chinki just gazed at her in awe", "They were having a lot of fun", "Until suddenly!!!", "Bbdoll left chinki and went away", "And chinki could not help but cry an ocean", "Chinki's sleep finally breaks, as he realizes it was all a dream", "Chinki gets sad, still unable to go out with bbdoll on valentines day", "But chinki is still determined to go out with bbdoll", "So, he is asking"]
 
-let hints = ["To open this top secret confidential document(from chinki to bbdoll) you must identify yourself.", "Hint 1: Chinki calls bbdoll this(but she hates it😭😭)", 'Hint 2: There is "ekta" in the middle, and the password does not have spaces.', "Hint 3: Bbdoll does this whenever she sees a catttyyyyyy", "Dhyet😡...eta type kor: shimuektamyao", "Yeeeeeeeeeee hiiiiiiiii bbdoollllllllllll"];
+let hints = ["To open this top secret confidential document(from chinki to bbdoll) you must identify yourself.", "Hint 1: Chinki calls bbdoll this(but she hates it😭😭) - 1st Part", 'Hint 2: There is "ekta" in the middle, and the password does not have spaces. - 2nd part', "Hint 3: Bbdoll does this whenever she sees a catttyyyyyy - 3rd part", "Dhyet😡...eta type kor: shimuektamyao", "Yeeeeeeeeeee hiiiiiiiii bbdoollllllllllll"];
 
 function writeText(element, text, index, last) {
     if(index === 0) {
