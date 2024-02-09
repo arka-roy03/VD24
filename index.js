@@ -29,6 +29,14 @@ function preloadAssets() {
     end.setAttribute('src', 'assets/stickers/end.webp');
     document.getElementsByClassName('preloading')[0].appendChild(start);
     document.getElementsByClassName('preloading')[0].appendChild(end);
+    var textElement1 = document.createElement("span");
+    textElement1.classList.add('preload-text-1');
+    textElement1.textContent = "text";
+    var textElement2 = document.createElement("span");
+    textElement2.classList.add('preload-text-2');
+    textElement2.textContent = "text";
+    document.getElementsByClassName('preloading')[0].appendChild(textElement1)
+    document.getElementsByClassName('preloading')[0].appendChild(textElement2)
 }
 
 preloadAssets();

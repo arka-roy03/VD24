@@ -18,6 +18,14 @@ body {
     background-size: 100vw 100vh;
 }
 
+.preload-text-1 {
+    font-family: Lucy;
+}
+
+.preload-text-2 {
+    font-family: LadyLikeBB;
+}
+
 .wrapper {
     position: absolute;
     top: 50%;
@@ -383,6 +391,11 @@ body {
     .final-text {
         font-size: 0.4rem;
         padding: 0 0.3rem;
+    }
+
+    .stopBtn {
+        right: 30px;
+        top: 20px;
     }
 
 }
