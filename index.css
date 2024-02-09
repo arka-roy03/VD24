@@ -20,10 +20,12 @@ body {
 
 .preload-text-1 {
     font-family: Lucy;
+    position: absolute;
 }
 
 .preload-text-2 {
     font-family: LadyLikeBB;
+    position: absolute;
 }
 
 .wrapper {
